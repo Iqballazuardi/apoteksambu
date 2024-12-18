@@ -25,7 +25,7 @@
                             <?php echo greeting_time() ?><strong>
                                 <?= $this->session->userdata('logged_in')['username']; ?>
                             </strong> have a wonderful day!
-                        </h3>
+                         </h3>
                         <hr>
 
                         <marquee direction="left" class="bg-gradient-primary p-1 rounded shadow" scrollamount="9">

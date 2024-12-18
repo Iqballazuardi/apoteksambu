@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Master Obat</title>
+    <title>Master Supplier</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
         table {
             margin: 0 auto;
             border-collapse: collapse;
-            width: 80%;
+            width: 100%;
         }
 
         table th,
@@ -60,13 +60,14 @@
         <img style="width: 100px;" src="<?php echo ('http://localhost/ApotekSambu/assets/images/apoteksambu.png') ?>" />
     </div>
 
-    <h1>Data Obat</h1>
+    <h1>Data Supplier</h1>
     <table>
         <tr>
             <th>No</th>
-            <th>Nama Obat</th>
-            <th>Supplier</th>
-            <th>Stock</th>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>Email</th>
+            <th>Nomor</th>
             <th>Ditambahkan Oleh</th>
         </tr>
         <?php
@@ -74,10 +75,11 @@
         foreach ($content as $row) { ?>
             <tr>
                 <td><?= $no++; ?></td>
-                <td><?= $row->nama_obat; ?></td>
-                <td><?= $row->supplier_name; ?></td>
-                <td><?= $row->stock; ?></td>
-                <td><?= $row->obat_updated_by ; ?></td>
+                <td><?= $row->nama; ?></td>
+                <td><?= $row->alamat; ?></td>
+                <td><?= $row->email; ?></td>
+                <td><?= $row->nomor; ?></td>
+                <td><?= $row->updated_by ; ?></td>
             </tr>
         <?php } ?>
     </table>

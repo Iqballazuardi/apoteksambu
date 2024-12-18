@@ -1,5 +1,4 @@
 <?php
-
 class C_obat extends CI_Controller
 {
     public function __construct()
@@ -7,6 +6,7 @@ class C_obat extends CI_Controller
         parent::__construct();
         $this->load->library("form_validation");
         $this->load->model("master/M_obat");
+        $this->load->model("master/M_supplier");
     }
 
     public function index()
@@ -18,15 +18,28 @@ class C_obat extends CI_Controller
             $data['password']   = $session_data['password'];
             $data['Titel']      = 'Dashboard';
             $data['dtobat']     = $this->M_obat->get_obat();
+            $data['dtsupplier'] = $this->M_supplier->get_supplier();
             $data['dtpersonil'] = $data['username'];
             $aksi               = $this->uri->segment(4);
+
+           
 
             $nama_obat          = $this->input->post('nama_obat');
             $supplier           = $this->input->post('supplier');
             $stock              = $this->input->post('stock');
+            $harga              = $this->input->post('harga');
             $updated_by         = $this->input->post('updated_by');
 
+
+            
+           
+       
+
             if ($aksi == 'simpan') {
+                if(!str_replace('RP ','', $harga)){
+                    echo "<script>alert('Harga Tidak boleh Kosong!! ');</script>";
+                    redirect('/master/C_obat', 'refresh');
+                }
 
                 $cek_obat = $this->M_obat->cek_obat($nama_obat, $supplier);
 
@@ -35,13 +48,16 @@ class C_obat extends CI_Controller
                     $data['dtobat']     = $this->M_obat->get_obat();
                     $this->load->view('master/V_obat', array_merge($data));
                 } else {
+                
                     $data_obat = array(
                         'nama_obat'         => $nama_obat,
                         'supplier'          => $supplier,
                         'stock'             => $stock,
-                        'updated_by'        => $updated_by[0]
+                        'harga'             => $harga,
+                        'updated_by'        => $updated_by
                     );
 
+                   
                     $this->M_obat->insert_dtobat($data_obat);
                     echo "<script>alert('Data berhasil disimpan....!!!! ');</script>";
                     redirect('/master/C_obat', 'refresh');
@@ -56,19 +72,23 @@ class C_obat extends CI_Controller
 
     public function update()
     {
-        $id           = $this->input->post('id_obat');
+        $id           = $this->input->post('obat_id');
         $nama_obat    = $this->input->post('nama_obat');
-        $supplier     = $this->input->post('supplier');
+        $supplier_id  = $this->input->post('supplier_id');
         $stock        = $this->input->post('stock');
         $updated_by   = $this->input->post('updated_by');
+        $harga        = $this->input->post('harga');
 
+
+        
         // check Jika Id Ada
         if (!empty($id)) {
             $data_obat = array(
                 'nama_obat'  => $nama_obat,
-                'supplier'   => $supplier,
+                'supplier'   => $supplier_id,
                 'stock'      => $stock,
-                'updated_by' => $updated_by
+                'updated_by' => $updated_by,
+                'harga'      => $harga,
             );
 
             // Update data
@@ -80,28 +100,35 @@ class C_obat extends CI_Controller
                     'vstatus' => 'berhasil',
                     'pesan'   => "Berhasil Update Data Obat",
                 );
+                echo json_encode($hasil);
             } else {
                 $hasil = array(
                     'status'  => 0,
                     'vstatus' => 'gagal',
                     'pesan'   => "Gagal Update Data Obat",
                 );
+                echo json_encode($hasil);
             }
-            echo json_encode($hasil);
+            
         } else {
-            // ID Obat TIdak Ditemukan
-            $this->session->set_flashdata('message', "ID Obat tidak ditemukan.");
-            redirect('/master/C_obat', 'refresh');
+            $hasil = array(
+                'status'  => 0,
+                'vstatus' => 'gagal',
+                'pesan'   => "ID obat tidak temukan!!",
+            );
+            echo json_encode($hasil);
         }
     }
 
     public function delete()
     {
-        $id = $this->input->post('id_obat');
+
+
+        $obat_id = $this->input->post('obat_id');
         // check Jika Id Ada
-        if (!empty($id)) {
+        if (!empty($obat_id)) {
             // Update data
-            $delete_obat = $this->M_obat->delete_obat($id);
+            $delete_obat = $this->M_obat->delete_obat($obat_id);
 
             if ($delete_obat) {
                 $hasil = array(
@@ -109,18 +136,23 @@ class C_obat extends CI_Controller
                     'vstatus' => 'berhasil',
                     'pesan'   => "Data Obat Berhasil Dihapus",
                 );
+                echo json_encode($hasil);
             } else {
                 $hasil = array(
                     'status'  => 0,
                     'vstatus' => 'gagal',
                     'pesan'   => "Gagal Hapus Data Obat",
                 );
+                echo json_encode($hasil);
             }
-            echo json_encode($hasil);
+            
         } else {
-            // ID Obat TIdak Ditemukan
-            $this->session->set_flashdata('message', "ID Obat tidak ditemukan.");
-            redirect('/master/C_obat', 'refresh');
+            $hasil = array(
+                'status'  => 0,
+                'vstatus' => 'gagal',
+                'pesan'   => "Id obat tidak di temuukan!!",
+            );
+            echo json_encode($hasil);
         }
     }
 

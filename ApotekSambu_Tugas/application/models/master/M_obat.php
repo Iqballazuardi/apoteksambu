@@ -5,7 +5,10 @@ class M_obat extends CI_Model
 {
     public function get_obat()
     {
-        return $this->db->query("SELECT * FROM obat ORDER BY id ASC")->result();
+        return  $this->db->query("SELECT supplier.nama as supplier_name,obat.id as obat_id,supplier.id as supplier_id, nama_obat , harga,stock,obat.updated_by as obat_updated_by 
+                                    FROM obat left join supplier on obat.supplier = supplier.id 
+                                    ORDER BY obat_id DESC")->result(); 
+        
     }
 
     function cek_obat($nama_obat, $supplier)
@@ -48,9 +51,9 @@ class M_obat extends CI_Model
         return TRUE;
     }
 
-    function delete_obat($id)
+    function delete_obat($obat_id)
     {
-        $query = $this->db->delete('obat', "id = '$id'");
+        $query = $this->db->delete('obat', "id = '$obat_id'");
         return $query;
     }
 }

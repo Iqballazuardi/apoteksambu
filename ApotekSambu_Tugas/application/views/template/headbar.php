@@ -244,7 +244,23 @@
                             <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/master/C_obat" data-toggle="dropdown" data-i18n="Menu Level 2">
                                     Obat
                                 </a></li>
-                        </ul>
+                            <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/master/C_supplier" data-toggle="dropdown" data-i18n="Menu Level 2">
+                                    Supplier
+                                </a></li>
+                            </ul>
+                    </li>
+                    <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="Menu Level 1">
+                            Transaksi
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/master/C_obat" data-toggle="dropdown" data-i18n="Menu Level 2">
+                                    Input Pembelian
+                                </a></li>
+                            <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/master/C_obat" data-toggle="dropdown" data-i18n="Menu Level 2">
+                                    Rekap Pembelian
+                                </a></li>
+                            </ul>
                     </li>
 
                 </ul>
