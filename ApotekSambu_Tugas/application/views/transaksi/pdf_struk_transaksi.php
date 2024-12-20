@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Master Obat</title>
+    <title>Rekap Transaksi</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,13 +19,13 @@
         table {
             margin: 0 auto;
             border-collapse: collapse;
-            width: 80%;
+            width: 100%;
         }
 
         table th,
         table td {
             border: 1px solid #000;
-            padding: 8px;
+            padding: 2px;
             text-align: center;
         }
 
@@ -60,29 +60,50 @@
         <img style="width: 100px;" src="<?php echo ('http://localhost/ApotekSambu/assets/images/apoteksambu.png') ?>" />
     </div>
 
-    <h1>Data Obat</h1>
+    <h1>Struk Pembelian</h1>
     <table>
-        <tr>
-            <th>No</th>
-            <th>Nama Obat</th>
-            <th>Supplier</th>
-            <th>Stock</th>
-            <th>Harga</th>
-            <th>Ditambahkan Oleh</th>
-        </tr>
         <?php
-        $no = 1;
+        
         foreach ($content as $row) { ?>
-            <tr>
-                <td><?= $no++; ?></td>
+           <tr> 
+                <th>Nama</th>
+                <td><?= $row->pasien_nama; ?></td>
+           </tr>
+           <tr> 
+                <th>Keluhan</th>
+                <td><?= $row->keluhan; ?></td>
+           </tr>
+           <tr> 
+                <th>Obat</th>
                 <td><?= $row->nama_obat; ?></td>
-                <td><?= $row->supplier_name; ?></td>
-                <td><?= $row->stock; ?></td>
-                <td>RP <?= number_format($row->harga, 0, ',', '.');  ?></td>
-                <td><?= $row->obat_updated_by ; ?></td>
-            </tr>
+           </tr>
+           <tr> 
+                <th>Pcs</th>
+                <td><?= $row->pcs; ?></td>
+           </tr>
+           <tr> 
+                <th>Harga Satuan</th>
+                <td><?= number_format($row->harga_satuan, 0, ',', '.');  ?></td>
+           </tr>
+           <tr> 
+                <th>Total Harga</th>
+                <td><?= number_format($row->total_harga, 0, ',', '.');  ?></td>
+           </tr>
+           <tr> 
+                <th>Kasir</th>
+                <td><?= $row->transaksi_updated_by; ?></td>
+           </tr>
+           <tr> 
+                <th>Tanggal</th>
+                <td><?= $row->create_at; ?></td>
+           </tr>
+              
+            
         <?php } ?>
     </table>
+
+    <div class="thank-you"> Thank you for your purchase! Paid! </div>
+    
 </body>
 
 </html>

@@ -146,7 +146,7 @@ $url = base_url();
                                                              </select>
                                                     </td>
                                                     <td> <input type="number" name="stock[]" id="stock" class="form-control stock" style="text-align: center;" value="<?= $dtobat_row->stock;  ?>" readonly></td>
-                                                    <td> <input type="text" name="harga[]" id="harga" class="form-control harga" style="text-align: center;" value="<?= $dtobat_row->harga;  ?>" readonly></td>
+                                                    <td> <input type="text" name="harga[]" id="harga" class="form-control harga" style="text-align: center;" value="RP <?= number_format($dtobat_row->harga, 0, ',', '.');  ?>" readonly></td>
                                                     <td> <input type="text" name="updated_by[]" id="updated_by" class="form-control updated_by" style="text-align: center;" value="<?= $dtobat_row->obat_updated_by;  ?>" readonly></td>
                                                     
                                                     <td>

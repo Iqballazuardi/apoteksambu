@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Master Obat</title>
+    <title>Rekap Transaksi</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,13 +19,13 @@
         table {
             margin: 0 auto;
             border-collapse: collapse;
-            width: 80%;
+            width: 100%;
         }
 
         table th,
         table td {
             border: 1px solid #000;
-            padding: 8px;
+            padding: 2px;
             text-align: center;
         }
 
@@ -60,26 +60,33 @@
         <img style="width: 100px;" src="<?php echo ('http://localhost/ApotekSambu/assets/images/apoteksambu.png') ?>" />
     </div>
 
-    <h1>Data Obat</h1>
+    <h1>Rekap Transaksi</h1>
     <table>
         <tr>
             <th>No</th>
-            <th>Nama Obat</th>
-            <th>Supplier</th>
-            <th>Stock</th>
-            <th>Harga</th>
-            <th>Ditambahkan Oleh</th>
+            <th>Nama </th>
+            <th>Keluhan</th>
+            <th>Obat</th>
+            <th>Pcs</th>
+            <th>Harga Satuan</th>
+            <th>Total Harga</th>
+            <th>Kasir</th>
+            <th>Tanggal</th>
         </tr>
         <?php
         $no = 1;
         foreach ($content as $row) { ?>
             <tr>
                 <td><?= $no++; ?></td>
+                <td><?= $row->pasien_nama; ?></td>
+                <td><?= $row->keluhan; ?></td>
                 <td><?= $row->nama_obat; ?></td>
-                <td><?= $row->supplier_name; ?></td>
-                <td><?= $row->stock; ?></td>
-                <td>RP <?= number_format($row->harga, 0, ',', '.');  ?></td>
-                <td><?= $row->obat_updated_by ; ?></td>
+                <td><?= $row->pcs; ?></td>
+                <td>RP <?= number_format($row->harga_satuan, 0, ',', '.');  ?></td>
+                <td>RP <?= number_format($row->total_harga, 0, ',', '.');  ?></td>
+                
+                <td><?= $row->transaksi_updated_by ; ?></td>
+                <td><?= $row->create_at ; ?></td>
             </tr>
         <?php } ?>
     </table>

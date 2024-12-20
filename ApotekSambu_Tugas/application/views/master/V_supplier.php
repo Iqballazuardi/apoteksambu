@@ -193,7 +193,7 @@ $url = base_url();
         let updated_by = $(this).closest('tr').find('.updated_by').val();
         let id = $(this).closest('tr').find('.id_supplier').val();
 
-        console.log(id);
+       
 
         
         if (id != 'undefined') {

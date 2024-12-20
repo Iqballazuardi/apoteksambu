@@ -53,7 +53,7 @@ class C_obat extends CI_Controller
                         'nama_obat'         => $nama_obat,
                         'supplier'          => $supplier,
                         'stock'             => $stock,
-                        'harga'             => $harga,
+                        'harga'             => preg_replace('/[^0-9]/', '', $harga),
                         'updated_by'        => $updated_by
                     );
 
@@ -88,7 +88,7 @@ class C_obat extends CI_Controller
                 'supplier'   => $supplier_id,
                 'stock'      => $stock,
                 'updated_by' => $updated_by,
-                'harga'      => $harga,
+                'harga'      => preg_replace('/[^0-9]/', '', $harga),
             );
 
             // Update data

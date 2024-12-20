@@ -216,7 +216,7 @@
 
 
     <!-- BEGIN: Main Menu-->
-    <div class="horizontal-menu-wrapper">
+    <div class="horizontal-menu-wrapper bg-black">
         <div class="header-navbar navbar-expand-sm navbar navbar-horizontal floating-nav navbar-dark navbar-without-dd-arrow navbar-shadow menu-border" role="navigation" data-menu="menu-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
@@ -254,10 +254,10 @@
                             Transaksi
                         </a>
                         <ul class="dropdown-menu">
-                            <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/master/C_obat" data-toggle="dropdown" data-i18n="Menu Level 2">
+                            <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/transaksi/C_transaksi" data-toggle="dropdown" data-i18n="Menu Level 2">
                                     Input Pembelian
                                 </a></li>
-                            <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/master/C_obat" data-toggle="dropdown" data-i18n="Menu Level 2">
+                            <li data-menu=""><a class="dropdown-item" href="<?= base_url(); ?>index.php/transaksi/C_rekap_transaksi" data-toggle="dropdown" data-i18n="Menu Level 2">
                                     Rekap Pembelian
                                 </a></li>
                             </ul>
